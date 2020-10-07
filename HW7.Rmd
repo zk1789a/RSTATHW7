@@ -29,6 +29,19 @@ parse_date("1 Jan 19", format = "%d %b %y")
 # Exercise 2  
 
 ```{r}
+parse_time("10:40 pm", format = "%I:%M %p")
 parse_time("23:40-22", format = "%H:%M-%S")
 ```
+
+# Exercise 3   
+
+```{r, warning=FALSE}
+covidstats <- read_csv("owid-covid-data.csv", col_types = cols(date = col_date()))
+
+tail(covidstats)
+
+summary(covidstats)
+
+write_csv(covidstats, "Data/owid-covid-data.csv", append = TRUE, na = "NA")
+```  
 
