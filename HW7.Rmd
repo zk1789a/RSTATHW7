@@ -3,7 +3,7 @@ title: "Zeyd Khalil HW7, October 8, 2020"
 output: pdf_document
 ---
 
-```{r}
+```{r, include=FALSE}
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(tidyverse))
 dfdat <- tribble(
@@ -38,8 +38,6 @@ parse_time("23:40-22", format = "%H:%M-%S")
 ```{r, warning=FALSE}
 covidstats <- read_csv("owid-covid-data.csv", col_types = cols(date = col_date()))
 
-covidstats$new_tests <- covidstats$total_tests <- covidstats$total_tests_per_thousand <- covidstats$new_tests_per_thousand <- covidstats$new_tests_smoothed <- covidstats$new_tests_smoothed_per_thousand <- covidstats$tests_per_case <- covidstats$positive_rate <- covidstats$tests_units <- NULL
-
 head(covidstats)
 
 summary(covidstats)
@@ -47,4 +45,6 @@ summary(covidstats)
 write_csv(covidstats, "Data/owid-covid-data.csv", append = TRUE, na = "NA")
 ```  
 
-> In order to clean my dataset, I removed all of the useless columns that had no values in them. 
+> As seen in covidstats, there are several columns that are <lgl>. These columns have no values in them, which therefore means I will be ignoring them for my project. 
+
+> COVID-19 dataset is a collection of the COVID-19 data maintained by Our World in Data. It is updated daily and includes data on confirmed cases, deaths, and testing, as well as other variables of potential interest.
