@@ -38,10 +38,13 @@ parse_time("23:40-22", format = "%H:%M-%S")
 ```{r, warning=FALSE}
 covidstats <- read_csv("owid-covid-data.csv", col_types = cols(date = col_date()))
 
-tail(covidstats)
+covidstats$new_tests <- covidstats$total_tests <- covidstats$total_tests_per_thousand <- covidstats$new_tests_per_thousand <- covidstats$new_tests_smoothed <- covidstats$new_tests_smoothed_per_thousand <- covidstats$tests_per_case <- covidstats$positive_rate <- covidstats$tests_units <- NULL
+
+head(covidstats)
 
 summary(covidstats)
 
 write_csv(covidstats, "Data/owid-covid-data.csv", append = TRUE, na = "NA")
 ```  
 
+> In order to clean my dataset, I removed all of the useless columns that had no values in them. 
